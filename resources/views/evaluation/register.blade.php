@@ -2,7 +2,7 @@
     <h3>فرم ثبت اطلاعات</h3>
     <div class="row justify-content-center mt-5">
         <div class="col-md-4 border shadow-sm rounded p-2">
-            <form method="POST" action="{{ route('evaluationDefine') }}">
+            <form method="POST" action="{{ route('evaluationDefine') }}"  enctype="multipart/form-data">
                 @csrf
 
                 <div class="mb-3">

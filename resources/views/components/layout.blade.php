@@ -32,9 +32,9 @@
                     گزینه ها
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">خطرها</a></li>
-                    <li><a class="dropdown-item" href="#">آموزش ها</a></li>
-                    <li><a class="dropdown-item" href="#">ابزار ها</a></li>
+                    <li><a class="dropdown-item" href="{{ route("khatarats") }}">خطرها</a></li>
+                    <li><a class="dropdown-item" href="{{ route("educations") }}">آموزش ها</a></li>
+                    <li><a class="dropdown-item" href="{{ route("equipments") }}">ابزار ها</a></li>
                 </ul>
             </li>
         </ul>

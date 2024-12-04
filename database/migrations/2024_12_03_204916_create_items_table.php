@@ -11,7 +11,6 @@ return new class extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
             $table->enum('type', array_column(ItemTypes::cases(), 'value'));
             $table->string('value');
             $table->timestamps();

@@ -13,7 +13,6 @@ return new class extends Migration
             $table->string('vahed');
             $table->string('shoghl');
             $table->string('name');
-            $table->timestamp('date');
             $table->string('sath_shghl')->nullable();
             $table->string('image');
             $table->unsignedBigInteger('khatarat_id');
@@ -32,14 +31,12 @@ return new class extends Migration
         });
 
         Schema::create('worksheet_educations', function (Blueprint $table) {
-            $table->string('id')->primary();
             $table->foreignId('worksheet_id')->nullable()->index();
             $table->unsignedBigInteger('education_id');
             $table->foreign('education_id')->references('id')->on('items');
         });
 
         Schema::create('worksheet_equipments', function (Blueprint $table) {
-            $table->string('id')->primary();
             $table->foreignId('worksheet_id')->nullable()->index();
             $table->unsignedBigInteger('equipment_id');
             $table->foreign('equipment_id')->references('id')->on('items');

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Enums\ItemTypes;
 use App\Models\Item;
 use App\Models\Worksheet;
+use App\Models\WorksheetEducation;
+use App\Models\WorksheetEquipment;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -19,7 +21,7 @@ class EvaluationController extends Controller
         return view("evaluation.register", [
             'khatarats'  => $khatarats,
             "educations" => $educations,
-            "equipments" => $equipments
+            "equipments" => $equipments,
         ]);
     }
 
@@ -33,17 +35,18 @@ class EvaluationController extends Controller
             'image'                 => ['required'],
             'khatarat_id'           => ['required'],
             'payamadha'             => ['required'],
-            'firstRisk_num_shedat'  => ['required'],
-            'firstRisk_num_ehtemal' => ['required'],
-            'firstRisk_num_risk'    => ['required'],
+            'firstRisk_num_shedat'  => ['required','numeric'],
+            'firstRisk_num_ehtemal' => ['required','numeric'],
+            'firstRisk_num_risk'    => ['required','numeric'],
             'controls'              => ['required'],
-            'sathRisk_num_shedat'   => ['required'],
-            'sathRisk_num_ehtemal'  => ['required'],
-            'sathRisk_num_risk'     => ['required'],
+            'sathRisk_num_shedat'   => ['required','numeric'],
+            'sathRisk_num_ehtemal'  => ['required','numeric'],
+            'sathRisk_num_risk'     => ['required','numeric'],
             'rahkar'                => ['required'],
             'masool_eghdam'         => ['required'],
         ]);
 
+        $filename = "";
         $image = $request->file('image');
         if($image != null)
         {
@@ -71,16 +74,16 @@ class EvaluationController extends Controller
             'masool_eghdam'         => $request->input("masool_eghdam"),
         ]);
 
-        if($request->input('educations') !== null)
+        if($request->input('education') != null)
             $worksheet
                 ->educations()
                 ->attach(Item::find($request->input('education')));
 
-        if($request->input('equipments') !== null)
+        if($request->input('equipment') != null)
             $worksheet
                 ->equipments()
                 ->attach(Item::find($request->input('equipment')));
 
-        return redirect()->intended('home');
+        return redirect()->route('home');
     }
 }
